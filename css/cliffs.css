@@ -1,0 +1,329 @@
+
+
+
+
+
+
+
+
+
+/* Table */
+caption {
+    background-color: #852b1b;
+    color: white;
+}
+/* .tableImages th {
+    background-color: #852b1b;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+} */
+#container-table {
+    /* margin: 100 200 100 200; */
+}
+table.tableImages tbody img {
+    width: 70%;
+    height: 150px;
+}
+/* .tableImages tbody, tr, td {
+    width: 300px;
+} */
+td {
+    cursor: pointer;
+}
+.tableImages caption {
+    background-color: #852b1b;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+    caption-side: top;
+    width: 70%;
+}
+.close {
+    float: right;
+    cursor: pointer;
+}
+.backdrop {
+    z-index: 1;
+    opacity: .0;
+    filter: alpha(opacity=0);
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+.box {
+    z-index: 2;
+    position: fixed;
+    opacity: 1;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 400px;
+    width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
+    box-shadow: 0px 0px 5px #444444;
+}
+.box img {
+    width: 600px;
+    height: 380px;
+}
+
+
+/* Header */
+header {
+    width: 100%;
+    min-height: 300px;
+    padding-top: 3em;
+}
+.main-header {
+    background-color:rgb(255, 255, 255, 0.8) ;
+    width: 700px;
+    margin: 2em auto 0 auto;
+    min-height: 100px;
+    height: 100px;
+}
+.main-header .logo img {
+    width: 100px;
+    height: 100px;
+    margin: 0 2em 0 0;
+    float: left;
+}
+
+/* Main */
+main {
+    padding: 3em 6em 3em 5.5em;
+    margin: 2em 0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+main h1 {
+    font-size: 2.5em;
+    padding-bottom: 0.5em;
+    color: #9ed034;
+}
+main h2 {
+    font-size: 1.7em;
+}
+
+/* Partners */
+section {
+    width: 100%;
+    background-color: #4288C3;
+}
+section #partners {  
+    width: auto;
+    padding: 2em 0 2em 0;
+    margin: 0 auto;
+    text-align: center;
+}
+section #partners .partner {
+    display: inline-block;
+    /* margin: 0 0.75em;
+    padding: 1.3em 1.5em; */
+}
+section #partners .partner img {
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    background-color: white;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    height: 155px;
+    padding-bottom: 1em;
+    background-color: #ecfab8;
+}
+footer #nondisclaimer .copy {
+    padding: 3.5em 3.5em 3.5em 13em;
+    float: left;
+    font-size: 0.9em;
+}
+footer #nondisclaimer .social {
+    padding: 2.5em;
+    margin-right: 9.25em;
+    float: right;
+}
+footer #disclaimer {
+    clear: both;
+}
+
+footer #disclaimer p {
+    font-size: 0.85em;
+    text-align: center;
+}
+footer #nondisclaimer .social .fa {
+    padding: 10px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 4px;
+    border-radius: 50%;
+}
+footer #nondisclaimer .social .fa:hover {
+    opacity: 0.7;
+}
+footer #nondisclaimer .social .fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+    
+footer #nondisclaimer .social .fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+footer #nondisclaimer .social .fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+/* Home */
+
+
+
+/* ACTIVATE BELOW WHEN TESTING NAVIGATION AND OTHERS FOR RWD */
+
+/* Media Queries */
+@media (max-width: 768px) {
+    footer #nondisclaimer .copy {
+        padding: 3.5em 0em 3.5em 0em;
+        text-align: center;
+        float: none;
+        font-size: 0.9em;
+    }
+    footer #nondisclaimer .social {
+        padding: 2.5em 0;
+        margin: 0;
+        text-align: center;
+        float: none;
+    }
+    main h1 {
+        text-align: center;
+    }
+    div.main {
+        justify-content: center;
+    }
+    div.host {
+        display: inline-block;
+        vertical-align: top;
+        border: 1px solid grey;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo img {
+        position: relative;
+        bottom: 8px;
+    }
+    .main-menu {
+        width: 200px;
+        background-color:rgb(255, 255, 255);
+        position: absolute;
+        right: 1.7em;
+      }
+      .main-menu ul li {
+        border-bottom: 1px solid rgba(202, 204, 202, 0.6);
+      }
+      main {
+        padding: 3em 1em 3em 1em;
+        margin: 0;
+      }
+      #home .main-col-content {
+        padding: 25px;
+        min-height: 450px;
+        margin-top: 1em;
+      }
+      main h1 {
+        text-align: center;
+      }
+      div.main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      div.host {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid grey;
+        margin: 10px;
+      }
+}
+
+
+
+
+nav[class='navbar navbar-expand-lg navbar-light bg-light'] {
+    margin-left: 227px;
+    font-weight: 400;
+}
+div[class='collapse navbar-collapse'] ul li {
+    list-style-type: none;
+    display: inline-block;
+    float: left;
+    /* padding-left: 25px;
+    padding-right: 25px; */
+    border-left: 1px solid rgba(202, 204, 202, 0.6);
+    line-height: 100px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+div[class='collapse navbar-collapse'] ul li a {
+    text-decoration: none;
+    color: #888;
+}
+div[class='collapse navbar-collapse'] ul li a:hover {
+    color: #9ed034;
+}
+li[class='nav-item active'] {
+    background: #9ed034;
+    border: none;
+}
+a.nav-link {
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-transform: capitalize;
+}
+.nav-item {
+    color: #fff;
+    height: 100px;
+    vertical-align: middle;
+    width: 100px;
+    align-content: center;
+}
+.navbar-custom {
+    height: 100px;
+}
+
+
+
+.main-menu ul li.active {
+    background: #9ed034;
+    border: none;
+}
+.main-menu ul li.active a {
+    color: #fff;
+}
+
+
