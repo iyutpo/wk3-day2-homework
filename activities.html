@@ -11,22 +11,34 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script>
+            var activities = {};   // key -> curr_activity;  value -> header (which cliff)
             $(document).ready(function(){
                 /* Open lightbox on button click */
-                $(`td:nth-child(1) img, td:nth-child(2) img, td:nth-child(3) img, 
-                td:nth-child(4) img, td:nth-child(5) img`).click(function(){
+                
+                $('.available').click(function(){
                     $('.backdrop').animate({'opacity':'.50'}, 300, 'linear').css('display', 'block');
                     $('.box').fadeIn();
-                    //Check if lightbox has an image
-                    if ($('.box').contents('img')) {
-                        // alert($('.box').contents());
-                        console.log($('.box').contents()[0].name);
-                        $('.box').contents().remove('img'); //If true, clear image
+                    var curr_activity = $(this).text();
+                    if (curr_activity === 'Not Available') {
+                      return;
                     }
-                    //Get text content in attribute
-                    // var $altvalue = $(this).attr('alt'); //or var altvalue = $(this).attr('alt');
-                    var img = $(this).clone(); //Duplicate DOM element
-                    $('.box').append(img); //Insert duplicated element in another element
+
+                    // if the activity currently selected existed in the activities array, then remove it from activities array
+                    if (activities.hasOwnProperty(curr_activity)) {
+                      delete activities[curr_activity];
+                    } else {
+                      var $cell = $(this);    // get the value of the matching header
+                      var header = $cell.closest( "table" ).find( "thead > tr > th" ).eq( $cell.index() ).html(); // do something with header value
+                      activities[curr_activity] = header;
+                    }
+                    // generate lines
+                    $('.selected-activities').empty();
+                    for (const [key, value] of Object.entries(activities)) {
+                      console.log(key + ' ' + value);
+                      var line = key + ' at ' + value;
+                      $('.selected-activities').append("<p>" + line + "</p>");
+                    }
+
                 });
                 /* Click to close lightbox */
                 $('.close, .backdrop').click(function(){
@@ -41,7 +53,7 @@
     </head>
     <body id="cliffs">
         <div id="container">
-              <header style="background-image: url('./images/forest_cliff.jpg');">
+              <header style="background-image: url('./images/runfly.jpg'); height: 100%; width: 100%; background-repeat: no-repeat;">
                 <div class="main-header bg-dark" style="position: -webkit-sticky; position: sticky; top: 0; position: fixed; left: 10%;">
                   <div class="logo">
                       <img src="images/logo.png" alt="Great Cliffs Logo">
@@ -81,55 +93,72 @@
             <p>There are many planned activities at all the cliff sites. Some are scheduled daily, weekly, monthly and yearly. These activities are not however run by the state park and recreational department. They are operated and manage by private vendors but are partners with the state department. Therefore, for schedule inquiries or information, please contact them directly. For a list of activities, please refer to the table below:</p>
 
             <table border="3" class="activities">
-                <caption class="activity-caption">Activities at the Cliffs</caption>
-                <thead>
-                    <tr>
-                        <th>Activity</th>
-                        <th>West Cliff</th>
-                        <th>North Cliff</th>
-                        <th>East Cliff</th>
-                        <th>South Cliff</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Hiking</td>
-                        <td>Kayak</td>
-                        <td>Skydiving</td>
-                        <td>Biking</td>
-                        <td>Camping</td>
-                    </tr>
-                    <tr>
-                        <td>College Hikes</td>
-                        <td>Western Kayak Meetup</td>
-                        <td>Seacliff Diving</td>
-                        <td>Bicycle for One</td>
-                        <td>Youth Camp</td>
-                    </tr>
-                    <tr>
-                        <td>Family Fun</td>
-                        <td>Not Available</td>
-                        <td>Sky is the limit</td>
-                        <td>Not Available</td>
-                        <td>Rent a Tent</td>
-                    </tr>
-                    <tr>
-                        <td>Treasure Trails</td>
-                        <td>Youth Kayaking</td>
-                        <td>Not Available</td>
-                        <td>Bike Meetup Group</td>
-                        <td>Campground Adventure</td>
-                    </tr>
-                    <tr>
-                        <td>Canyon Explorer</td>
-                        <td>Kayak Down</td>
-                        <td>Sky Diving for Beginners</td>
-                        <td>Not Available</td>
-                        <td>Sunset Camping</td>
-                    </tr>
-                </tbody>
-                
-            </table>
+              <caption class="activity-caption">Activities at the Cliffs</caption>
+              <thead>
+                  <tr>
+                      <th>Activity</th>
+                      <th>West Cliff</th>
+                      <th>North Cliff</th>
+                      <th>East Cliff</th>
+                      <th>South Cliff</th>
+                  </tr>
+              </thead>
+              
+              <tbody>
+                  <tr>
+                      <td>Hiking</td>
+                      <td class="available">Kayak</td>
+                      <td class="available">Skydiving</td>
+                      <td class="available">Biking</td>
+                      <td class="available">Camping</td>
+                  </tr>
+                  <tr>
+                      <td>College Hikes</td>
+                      <td class="available">Western Kayak Meetup</td>
+                      <td class="available">Seacliff Diving</td>
+                      <td class="available">Bicycle for One</td>
+                      <td class="available">Youth Camp</td>
+                  </tr>
+                  <tr>
+                      <td>Family Fun</td>
+                      <td class="available">Not Available</td>
+                      <td class="available">Sky is the limit</td>
+                      <td class="available">Not Available</td>
+                      <td class="available">Rent a Tent</td>
+                  </tr>
+                  <tr>
+                      <td>Treasure Trails</td>
+                      <td class="available">Youth Kayaking</td>
+                      <td class="available">Not Available</td>
+                      <td class="available">Bike Meetup Group</td>
+                      <td class="available">Campground Adventure</td>
+                  </tr>
+                  <tr>
+                      <td>Canyon Explorer</td>
+                      <td class="available">Kayak Down</td>
+                      <td class="available">Sky Diving for Beginners</td>
+                      <td class="available">Not Available</td>
+                      <td class="available">Sunset Camping</td>
+                  </tr>
+              </tbody>
+              
+          </table>
+
+
+          <!-- pop up image window -->
+          <div class="backdrop"></div>
+          <div class="box">
+            <div class="close">x</div>
+            <h3>My selected activities to enquire: </h3>
+            <div class="selected-activities"></div>
+            <div>
+              <button class="close" style="display: inline-block; background-color: green; color: white; opacity: 1;">Back to Activities</button>
+              <button style="background-color: blue; color: white; display: inline-block; ">Get Info</button>
+            </div>
+          </div>
+            
+          
+
         </main>
         
         <section>
@@ -153,37 +182,39 @@
                   <img src="images/partners/partner-tourgroup.png" alt="Partner Tour Group">
               </li>
            </ul>
-          </section>
+        </section>
       
-            <footer>
-              <!-- Nondisclaimer -->
-              <div id="nondisclaimer">
-                <div class="copy">&copy; Copyright 2021 :: GreatCliffs.com</div>
-                <div class="social">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-twitter"></a>
-                </div>
-              </div>
-              <!-- End Nondisclaimer -->
-      
-              <!-- Disclaimer -->
-              <div id="disclaimer">
-                <p>
-                  This website is designed and created solely for educational purposes
-                  only at Westcliff University. All contents are not intended for any
-                  commercial gain or use.
-                </p>
-              </div>
-              <!-- End Disclaimer -->
-      
-            </footer>
+        <footer>
+          <!-- Nondisclaimer -->
+          <div id="nondisclaimer">
+            <div class="copy">&copy; Copyright 2021 :: GreatCliffs.com</div>
+            <div class="social">
+              <a href="#" class="fa fa-facebook"></a>
+              <a href="#" class="fa fa-instagram"></a>
+              <a href="#" class="fa fa-twitter"></a>
+            </div>
+          </div>
+          <!-- End Nondisclaimer -->
+  
+          <!-- Disclaimer -->
+          <div id="disclaimer">
+            <p>
+              This website is designed and created solely for educational purposes
+              only at Westcliff University. All contents are not intended for any
+              commercial gain or use.
+            </p>
+          </div>
+          <!-- End Disclaimer -->
+  
+        </footer>
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="./js/activities.js"></script>
+      
     </body>
 </html>
 
